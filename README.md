@@ -48,34 +48,6 @@ class Printer3 implements Decorator, Printer {
 
 If the number of -- characters wasn’t fixed at two per side and needed to be customizable, one approach would be to define this behavior in the Decorator interface. This would require adding a method to Decorator that returns the number of -- characters to apply, allowing each decorator to define its own style.
 
-```java
-
-interface Decorator {
-    String decorate(String input);
-    int getDecorationSize();
-}
-
-class CustomDecorator implements Decorator {
-    private final Decorator baseDecorator;
-
-    CustomDecorator(Decorator baseDecorator) {
-        this.baseDecorator = baseDecorator;
-    }
-
-    @Override
-    public String decorate(String input) {
-        int size = getDecorationSize();
-        String prefixSuffix = "-".repeat(size);
-        return prefixSuffix + baseDecorator.decorate(input) + prefixSuffix;
-    }
-
-    @Override
-    public int getDecorationSize() {
-        return 2; 
-    }
-}
-
-```
 
 However, if the number of -- characters was defined in the Printer interface, it would shift the responsibility of defining the decoration style from decorators to printers. This means every class that implements Printer would need to specify how many -- characters should be used even if not all printers require this feature.
 
