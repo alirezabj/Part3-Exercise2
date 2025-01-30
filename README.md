@@ -4,7 +4,19 @@
 
 
 #### A)
-Inheritance and polymorphism are demonstrated in this code through the handling of the exception  and the structure of the class hierarchy. The Problem class extends Exception, and its subclasses, WeirdProblem and TrickyProblem, inherit from Problem, allowing them to be treated as Problem instances. This inheritance structure enables Experiment to explicitly declare that it throws either WeirdProblem or TrickyProblem, while Experiment2 generalizes this by declaring throws Problem, allowing any subclass of Problem to be thrown. Polymorphism is applied in the main() method’s try-catch structure, where exceptions are caught based on their actual type at runtime. The catch blocks are ordered correctly, handling the specific exceptions WeirdProblem and TrickyProblem first, before catching the more general Problem, which ensures that all exceptions are processed appropriately. 
+Inheritance and polymorphism are demonstrated in this code through the handling of the exception  and the structure of the class hierarchy. The Problem class extends Exception, and its subclasses, WeirdProblem and TrickyProblem, inherit from Problem, allowing them to be treated as Problem instances. This inheritance structure enables Experiment to explicitly declare that it throws either WeirdProblem or TrickyProblem, while Experiment2 generalizes this by declaring throws Problem, allowing any subclass of Problem to be thrown. 
+
+Polymorphism is used in the try-catch structure because exceptions are handled based on their actual type when they occur. Even though WeirdProblem and TrickyProblem are both treated as Problem, Java automatically recognizes which specific exception is thrown at runtime. In Experiment2, the perform method is declared to throw a Problem, but in reality, it throws either WeirdProblem or TrickyProblem. This is an example of  polymorphism, where a general type (Problem) is used, but the actual object is one of its specific subclasses (WeirdProblem or TrickyProblem). This allows the code to work with exceptions in a flexible way, without needing to specify every possible exception type when calling perform.
+
+However, the catch blocks in the main are ordered incorrectly because WeirdProblem and TrickyProblem are subclasses of Problem and they are caught earlier which makes the last `catch (Problem w)` unreachable. To fix this, we would need to place `catch (Problem w)` before `catch (WeirdProblem w)` and `catch (TrickyProblem w)`. 
+
+
+
+
+
+
+
+
 
 #### B)
 Printer1 and Printer2 both implement the Printer interface and use a decorator to modify how the output is displayed, but they are different in their approach to reuse. Printer1 uses inheritance, since it extends Fancy, meaning it directly inherits the decorate() method. This makes the code simpler but also less flexible, since it's directly tied to Fancy and can't easily switch to a different decoration style. On the other hand, Printer2 uses composition, meaning instead of inheriting from Fancy, it holds a reference to a Decorator instance, which it initializes through generateDecorator(). This approach allows greater flexibility, as the decorator can be dynamically assigned or changed without modifying the class itself. Thus, in generall, Printer1 is less flexible but simpler but Printer2 is more adaptable
