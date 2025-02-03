@@ -8,7 +8,7 @@ Inheritance and polymorphism are demonstrated in this code through the handling 
 
 Polymorphism is used in the try-catch structure because exceptions are handled based on their actual type when they occur. Even though WeirdProblem and TrickyProblem are both treated as Problem, Java automatically recognizes which specific exception is thrown at runtime. In Experiment2, the perform method is declared to throw a Problem, but in reality, it throws either WeirdProblem or TrickyProblem. This is an example of  polymorphism, where a general type (Problem) is used, but the actual object is one of its specific subclasses (WeirdProblem or TrickyProblem). 
 
-Addtionaly, the catch block ordering in the code is correct because Java requires more specific exceptions to be caught before more general ones. Since WeirdProblem and TrickyProblem are subclasses of Problem, they must be caught first. Otherwise, placing catch (Problem w) before them would make the specific catch blocks unreachable, causing a compilation error.
+Addtionaly, the catch block ordering in the code is correct because Java requires more specific exceptions to be caught before more general ones. Since WeirdProblem and TrickyProblem are subclasses of Problem, they must be caught first. Otherwise, placing catch (Problem w) before them would make the specific catch blocks unreachable, causing an error.
 
 
 
